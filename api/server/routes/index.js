@@ -1,10 +1,5 @@
-import express from 'express';
+import main from './main';
 
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'World' });
-});
-
-export default router;
+export {
+  main
+};
