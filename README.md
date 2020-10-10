@@ -22,7 +22,7 @@ You'll need to install nodemon globally. To do it, run `npm install -g nodemon`
 
 ##### Making calls
 
-To make calls to the application, you can use Postman. Using the Postman application, import the collection found in the `postman` folder.
+To make calls to the application, you can use Postman. Using the Postman application, import the collection and environment files found in the `postman` folder.
 
 You'll find three requests: "Create User", "Get User(s)" and "Get User by ID".
 
