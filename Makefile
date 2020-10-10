@@ -1,5 +1,5 @@
 dev:
-	npm run watch:dev
+	npm run dev
 
 clean:
 	npm run clean
