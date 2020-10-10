@@ -3,10 +3,10 @@ import Datasource from 'nedb';
 import { register } from 'babel-core';
 import babelPolyfill from 'babel-polyfill';
 import UsersRepository from '../repository/UsersRepository';
-import ValidateUser from '../utilities/ValidateUser';
+import UsersUtilities from '../utilities/UsersUtilities';
 
 const repository = new UsersRepository();
-const validation = new ValidateUser();
+const validation = new UsersUtilities();
 
 var main = express.Router();
 
@@ -33,7 +33,7 @@ main.get('/users/:userId', async (req, res) => {
 main.post('/', async (req, res) => {
   let results;
   try {
-    const entity = await validation.validateUsers(req.body);
+    const entity = await validation.validateUser(req.body);
     results = await repository.insertObj(entity);
   } catch (e) {
     console.log('err', e);
