@@ -3,17 +3,24 @@ import Datasource from 'nedb';
 import { register } from 'babel-core';
 import babelPolyfill from 'babel-polyfill';
 import UsersRepository from '../repository/UsersRepository';
-import ValidateUser from '../utilities/ValidateUser';
+import { QueryUtilities, UsersUtilities } from '../utilities';
 
 const repository = new UsersRepository();
-const validation = new ValidateUser();
+const sanitizer = new QueryUtilities();
+const validation = new UsersUtilities();
 
 var main = express.Router();
 
 main.get('/', async (req, res) => {
+  return res.send("It's running!");
+});
+
+main.get('/users', async (req, res) => {
   let results;
+  let query;
   try {
-    results = await repository.find(req.query);
+    query = await sanitizer.sanitizeQuery(req.query);
+    results = await repository.find(query);
   } catch (e) {
     return res.json({ success: false, users: [], count: 0, message: e });
   }
@@ -30,10 +37,10 @@ main.get('/users/:userId', async (req, res) => {
   return res.json({ success: true, users: results, count: results.length, message: '' });
 })
 
-main.post('/', async (req, res) => {
+main.post('/users', async (req, res) => {
   let results;
   try {
-    const entity = await validation.validateUsers(req.body);
+    const entity = await validation.validateUser(req.body);
     results = await repository.insertObj(entity);
   } catch (e) {
     console.log('err', e);

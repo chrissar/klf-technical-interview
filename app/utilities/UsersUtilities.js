@@ -3,7 +3,7 @@ import User from "../entities/User";
 
 const repository = new UsersRepository();
 
-export default class ValidateUser {
+export default class UsersUtilities {
 
     validateEmail(email) {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -15,7 +15,7 @@ export default class ValidateUser {
         return re.test(String(password));
     }
 
-    async validateUsers(element) {
+    async validateUser(element) {
         return new Promise(async (resolve, reject) => {
             const { firstName, lastName, email, password } = element;
             let errors = {};
