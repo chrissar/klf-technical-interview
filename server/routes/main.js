@@ -6,7 +6,7 @@ import UsersRepository from '../repository/UsersRepository';
 import ValidateUser from '../utilities/ValidateUser';
 
 const repository = new UsersRepository();
-const validation = new ValidateUser;
+const validation = new ValidateUser();
 
 var main = express.Router();
 

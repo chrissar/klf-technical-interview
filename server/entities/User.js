@@ -1,8 +1,10 @@
 export default class User {
 
-    constructor(firstName, lastName) {
+    constructor(firstName, lastName, email, password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     getFirstName() {
@@ -19,6 +21,22 @@ export default class User {
 
     setLastName(lastName) {
         this.lastName = lastName;
+    }
+
+    setemail() {
+        return this.email;
+    }
+
+    setemail(email) {
+        this.email = email;
+    }
+
+    setPassword() {
+        return this.password;
+    }
+
+    setPassword(password) {
+        this.password = password;
     }
 
 }
