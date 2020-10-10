@@ -16,9 +16,9 @@ You'll need to install nodemon globally. To do it, run `npm install -g nodemon`
 2. a) To run a dev build that will reload when a change is made, run the following command: `npm run watch:dev`
 
 
-   b) If you do not install nodemon, run the following command: `npm run dev` (you will need to manually relaunch the application at every change).
-3. A simple build can be done using `npm run build`
-4. Cleaning your build can be done using `npm run clean`
+   b) If you do not install nodemon, run the following command: `npm run dev` or `make dev` (you will need to manually relaunch the application at every change).
+3. A simple build can be done using `npm run build` or `make build`
+4. Cleaning your build can be done using `npm run clean` or `make clean`
 
 ##### Making calls
 
