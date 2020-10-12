@@ -3,11 +3,12 @@ import Datasource from 'nedb';
 import { register } from 'babel-core';
 import babelPolyfill from 'babel-polyfill';
 import UsersRepository from '../repository/UsersRepository';
-import { QueryUtilities, UsersUtilities } from '../utilities';
+import { PasswordUtilities, QueryUtilities, UsersUtilities } from '../utilities';
 
 const repository = new UsersRepository();
-const sanitizer = new QueryUtilities();
-const validation = new UsersUtilities();
+const passwordUtils = new PasswordUtilities();
+const queryUtils = new QueryUtilities();
+const usersUtils = new UsersUtilities();
 
 var main = express.Router();
 
@@ -19,7 +20,7 @@ main.get('/users', async (req, res) => {
   let results;
   let query;
   try {
-    query = await sanitizer.sanitizeQuery(req.query);
+    query = await queryUtils.sanitizeQuery(req.query);
     results = await repository.find(query);
   } catch (e) {
     return res.json({ success: false, users: [], count: 0, message: e });
@@ -39,8 +40,10 @@ main.get('/users/:userId', async (req, res) => {
 
 main.post('/users', async (req, res) => {
   let results;
+  let entity;
   try {
-    const entity = await validation.validateUser(req.body);
+    entity = await usersUtils.validateUser(req.body);
+    entity['password'] = passwordUtils.encryptPassword(entity['password']);
     results = await repository.insertObj(entity);
   } catch (e) {
     console.log('err', e);

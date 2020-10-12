@@ -10,4 +10,7 @@ build:
 prod:
 	npm run prod
 
-.PHONY: default clean build prod dev
+test:
+	npm run test
+
+.PHONY: default clean build prod dev test
