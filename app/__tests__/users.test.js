@@ -1,5 +1,4 @@
 import { expect, it, test } from '@jest/globals';
-import { describe } from 'yargs';
 import UsersUtilities from '../utilities/UsersUtilities';
 
 const utilities = new UsersUtilities();
